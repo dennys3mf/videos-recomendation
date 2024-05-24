@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Video Recommendation</title>
+</head>
+
+<body>
+    <h1>Recommended Videos</h1>
+    <ul>
+        {% for video in videos %}
+        <li>
+            <form method="post" action="/watch">
+                <input type="hidden" name="user_id" value="default_user">
+                <input type="hidden" name="video_id" value="{{ video.id }}">
+                <button type="submit">{{ video.title }}</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
