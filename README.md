@@ -11,3 +11,12 @@ Este proyecto es un sistema de recomendación de videos que sugiere el siguiente
 Configura las variables de entorno. Copia .env.example a .env y completa los valores necesarios.
 # Ejecutar aplicacion
 docker-compose up --build
+
+### 2. Pruebas Unitarias y de Integración
+
+Agrega un directorio `tests` y configura un framework de pruebas como `Jest` para Node.js. 
+
+Instala `Jest` y `Supertest`:
+
+```sh
+npm install --save-dev jest supertest
