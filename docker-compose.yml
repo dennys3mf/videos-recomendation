@@ -29,6 +29,8 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: example
       POSTGRES_DB: videos
+    ports:
+      - "5432:5432"
 
   kafka:
     image: wurstmeister/kafka:2.13-2.7.0
@@ -42,11 +44,23 @@ services:
       KAFKA_CREATE_TOPICS: "video_watched:1:1"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      
+  data-seed:
+    build: ./data-seed
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_DB: videos
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: example
+    depends_on:
+      - postgres
 
-  results:
+  results-nodejs:
     build: ./results-nodejs
+    command: node index.js
+    volumes:
+      - ./results-nodejs:/app
     ports:
       - "3002:3002"
     depends_on:
       - postgres
-
