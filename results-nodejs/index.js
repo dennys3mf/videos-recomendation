@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname)));
 io.on("connection", (socket) => {
   console.log("Usuario conectado");
 
-  // Ejemplo de cómo podrías emitir eventos de visualización de videos
+  // Ejemplo de emision de eventos de visualización de videos
   socket.on("video_watched", async (videoId) => {
     try {
       const result = await pool.query("SELECT * FROM videos WHERE id = $1", [
